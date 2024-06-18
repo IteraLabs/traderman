@@ -1,0 +1,52 @@
+
+# --- ------------------------------------------------------------------- --- #
+[build-system]
+# --- ------------------------------------------------------------------- --- #
+requires = ["setuptools", "setuptools-rust"]
+build-backend = "setuptools.build_meta"
+
+# --- ------------------------------------------------------------------- --- #
+[project]
+# --- ------------------------------------------------------------------- --- #
+name = "traderman"
+version = "0.0.dev1"
+description = " Python SDK to build, train, stress-test," + \
+              " deploy and monitor trading strategies "
+
+requires-python = ">=3.11"
+dependencies = ["numpy"]
+
+authors = [
+  { name = "Francisco ME",
+    email = "if.francisco.me@gmail.com" }, 
+]
+maintainers = [
+  { name = "Francisco ME",
+    email = "if.francisco.me@gmail.com" }, 
+]
+
+readme = "README.md"
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operative System :: OS Independent",
+]
+keywords = ["python3", "trading", "sdk"]
+
+[project.optional-dependencies]
+dev = ["rich"]
+test = ["pytest"]
+
+[project.urls]
+Homepage = "https://github.com/iteralabs/traderman"
+Issues = "https://github.com/iteralabs/traderman/issues"
+
+[project.scripts]
+sample = "sample:main"
+
+# --- ------------------------------------------------------------------- --- #
+[tool.setuptools]
+# --- ------------------------------------------------------------------- --- #
+package-data = {"sample" = ["*.dat"]}
+
