@@ -2,191 +2,124 @@
 # --- 
 
 import os
-import requests
-import json
-import base64
-import time
-import hmac
-import hashlib
-
 import pandas as pd
-from urllib.parse import urlencode
-from cryptography.hazmat.primitives.serialization import load_pem_private_key
-
-# load keys from environment
-from connectors.config import *
-env_binance_api_key = os.environ["BINANCE_API_KEY"]
-env_binance_secret_key = os.environ["BINANCE_SECRET_KEY"]
+import connectors.clients as ct
 
 BASE_URL = "https://api.binance.com"
+HASH_METHOD = "sha256" 
 
 # --- ------------------------------------------------------------------- --- #
-
-def get_server_time(server_url:str):
+# --- ------------------------------------------------------------------- --- #
+def public_trades(in_params, api_key):
     """
-    a simple REST API type of call to retrieve a remote's server time
-    
-    Args:
-        server_url: str
-            url string to query the time
-            e.g. "https://api.binance.com/api/v1/time"
-    
-    Returns:
-        The time as known by the server 
-
-    Raises:
-        TypeError: if server_url is not str
-    
     """
 
-    # Get the current time from the Binance's Server
-    servertime = requests.get(server_url)
-    servertimeobject = json.loads(servertime.text)
-    servertime = servertimeobject['serverTime']
+    sr = ct.send_public_request("/api/v3/trades", 
+                                in_params,
+                                BASE_URL,
+                                api_key,)
 
-    return servertime
-
-def get_timestamp():
-    return int(time.time() * 1000)
+    return sr
 
 # --- ------------------------------------------------------------------- --- #
-
-def sign_params(params, timestamp, secret):
-    """
-    """ 
-
-    # Sort the parameters by their keys
-    params["timestamp"] = timestamp
-    
-    # Encode the parameters in urlencoding
-    encoded_params = urlencode(params)
-
-    # Sign the payload (params)
-    signed_params = hmac.new(secret.encode('utf-8'),
-                             encoded_params.encode('utf-8'),
-                             hashlib.sha256).hexdigest()
- 
-    return signed_params
-    
-
 # --- ------------------------------------------------------------------- --- #
-def account_info():
+def account_info(api_key, secret_key):
     """
     Get the account information
     """
 
-    pass
+    sr = ct.send_signed_request("GET",
+                                "/api/v3/account", 
+                                {},
+                                BASE_URL, 
+                                api_key,
+                                secret_key, )
+    
+    return sr
 
 
 # --- ------------------------------------------------------------------- --- #
-def new_order():
+# --- ------------------------------------------------------------------- --- #
+def new_order(in_params, api_key, secret_key):
     """
     place a new order
     """
 
-    pass
+    sr = ct.send_signed_request("POST",
+                                "/api/v3/order",
+                                in_params,
+                                BASE_URL, 
+                                api_key, 
+                                secret_key, )
+
+    return sr
 
 
 # --- ------------------------------------------------------------------- --- #
-def query_order():
+# --- ------------------------------------------------------------------- --- #
+def query_order(in_params, api_key, secret_key):
     """
     get the available info for a given order
     """
 
-    pass
+    sr = ct.send_signed_request("GET", 
+                                "/api/v3/order", 
+                                in_params,
+                                BASE_URL, 
+                                api_key, 
+                                secret_key, )
+
+    return sr
 
 # --- ------------------------------------------------------------------- --- #
-def cancel_order():
+# --- ------------------------------------------------------------------- --- #
+def cancel_order(in_params, api_key, secret_key):
     """
     cancel a given order
     """
+    
+    sr = ct.send_signed_request("DELETE",
+                                "/api/v3/order",
+                                in_params,
+                                BASE_URL,
+                                api_key,
+                                secret_key,)
 
-    pass
+    return sr
 
 
 # --- ------------------------------------------------------------------- --- #
-def cancel_all_orders():
+# --- ------------------------------------------------------------------- --- #
+def cancel_all_orders(in_params, api_key, secret_key):
     """
     cancel all open orders for a particular symbol
     """
+    
+    sr = ct.send_signed_request("DELETE",
+                                "/api/v3/openOrders",
+                                in_params,
+                                BASE_URL,
+                                api_key,
+                                secret_key, )
 
-    pass
+    return sr
 
 
 # --- ------------------------------------------------------------------- --- #
-def get_all_orders():
+# --- ------------------------------------------------------------------- --- #
+def get_all_orders(in_params, api_key, secret_key):
     """
     get all orders (open, filled, cancelled) for a given instrument in a 
     given period of time
     """
 
-    pass
+    sr = ct.send_signed_request("GET",
+                                "/api/v3/allOrders",
+                                in_params,
+                                BASE_URL,
+                                api_key,
+                                secret_key, )
 
-# --------------------------------------------------------------------------- #
+    return sr
+
  
-KEY = os.environ["BINANCE_API_KEY"]
-SECRET = os.environ["BINANCE_SECRET_KEY"]
-BASE_URL = "https://api.binance.com"
-HASH_METHOD = hashlib.sha256
-
-def hashing(query_string,
-            encoding_type:str = "utf-8",
-            hash_method:object = HASH_METHOD):
-    """
-    """
-
-    encoded_secret = SECRET.encode(encoding_type)
-    encoded_string = query_string.encode(encoding_type)
-    r_hased = hmac.new(encoded_secret, encoded_string, hash_method)
-    
-    return r_hased.hexdigest()
-
-def get_timestamp():
-    return int(time.time() * 1000)
-
-
-def dispatch_request(http_method):
-    """
-    """
-
-    session = requests.Session()
-    session.headers.update(
-        {"Content-Type": "application/json;charset=utf-8", "X-MBX-APIKEY": KEY}
-    )
-    return {
-        "GET": session.get,
-        "DELETE": session.delete,
-        "PUT": session.put,
-        "POST": session.post,
-    }.get(http_method, "GET")
-
-
-def send_signed_request(http_method, url_path, payload={}):
-    """
-    """
-
-    query_string = urlencode(payload, True)
-    if query_string:
-        query_string = "{}&timestamp={}".format(query_string, get_timestamp())
-    else:
-        query_string = "timestamp={}".format(get_timestamp())
-
-    url = (
-        BASE_URL + url_path + "?" + query_string + "&signature=" + hashing(query_string)
-    )
-    print("{} {}".format(http_method, url))
-    params = {"url": url, "params": {}}
-    response = dispatch_request(http_method)(**params)
-    return response.json()
-
-
-# used for sending public data request
-def send_public_request(url_path, payload={}):
-    query_string = urlencode(payload, True)
-    url = BASE_URL + url_path
-    if query_string:
-        url = url + "?" + query_string
-    print("{}".format(url))
-    response = dispatch_request("GET")(url=url)
-    return response.json()
-
