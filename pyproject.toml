@@ -1,13 +1,11 @@
 
-# --- ------------------------------------------------------------------- --- #
 [build-system]
-# --- ------------------------------------------------------------------- --- #
+
 requires = ["setuptools", "setuptools-rust"]
 build-backend = "setuptools.build_meta"
 
-# --- ------------------------------------------------------------------- --- #
 [project]
-# --- ------------------------------------------------------------------- --- #
+
 name = "traderman"
 version = "0.0.dev1"
 description = " Python SDK to build, train, stress-test," + \
@@ -45,8 +43,7 @@ Issues = "https://github.com/iteralabs/traderman/issues"
 [project.scripts]
 sample = "sample:main"
 
-# --- ------------------------------------------------------------------- --- #
 [tool.setuptools]
-# --- ------------------------------------------------------------------- --- #
+
 package-data = {"sample" = ["*.dat"]}
 
