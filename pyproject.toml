@@ -14,7 +14,7 @@ description = " Python SDK to build, train, stress-test," + \
               " deploy and monitor trading strategies "
 
 requires-python = ">=3.11"
-dependencies = ["numpy"]
+dependencies = ["numpy", "pandas", "torch"]
 
 authors = [
   { name = "Francisco ME",
