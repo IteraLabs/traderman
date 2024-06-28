@@ -1,7 +1,7 @@
 
 # --- ----------------------------------------------------------------------- #
 # --- File: AbstractForecast.py ----------------------------------------- --- #
-# --- Mode: RandoBen ---------------------------------------------------- --- #
+# --- Mode: Randomizer -------------------------------------------------- --- #
 # --- ----------------------------------------------------------------------- #
 
 from __future__ import annotations
@@ -13,6 +13,7 @@ from abc import ABC, abstractmethod
 
 class Forecaster(ABC):
     """
+    Abstract Factory template class
     """
     
     @abstractmethod

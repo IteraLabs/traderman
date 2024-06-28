@@ -46,7 +46,10 @@ def new_order(in_params, api_key, secret_key):
 
     Args:
 
-        in_params:
+        in_params: dict (default={})
+        "symbol": "BTCUSDT"
+        "side": "SELL"
+        "type": "MARKET"
 
     """
 
