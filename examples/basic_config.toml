@@ -6,7 +6,7 @@
 file_name="benchmarks.py"
 file_path="traderman/forecasters/"
 model_name="Randomizer"
-model_params={"seed"=1234, "classes"=["buy", "sell"]}
+model_params={"seed"=1234, "classes"=["BUY", "SELL"]}
 
 [model.risk]
 
