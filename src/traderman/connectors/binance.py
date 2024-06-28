@@ -3,23 +3,23 @@
 
 import os
 import pandas as pd
-import connectors.clients as ct
+import traderman.connectors.clients as ct
 
 BASE_URL = "https://api.binance.com"
 HASH_METHOD = "sha256" 
 
 # --- ------------------------------------------------------------------- --- #
 # --- ------------------------------------------------------------------- --- #
-def public_trades(in_params, api_key):
-    """
-    """
 
-    sr = ct.send_public_request("/api/v3/trades", 
-                                in_params,
+def test_connection():
+    
+    sr = ct.send_public_request("/api/v1/ping",
+                                {},
                                 BASE_URL,
-                                api_key,)
+                                None)
 
     return sr
+    
 
 # --- ------------------------------------------------------------------- --- #
 # --- ------------------------------------------------------------------- --- #
@@ -43,6 +43,11 @@ def account_info(api_key, secret_key):
 def new_order(in_params, api_key, secret_key):
     """
     place a new order
+
+    Args:
+
+        in_params:
+
     """
 
     sr = ct.send_signed_request("POST",

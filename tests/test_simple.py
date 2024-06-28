@@ -3,14 +3,18 @@
 
 import os
 import unittest
-from traderman.dataloader import load_csv
-test_file = os.getcwd(".")
+
+#  --- ------------------------------------------------------------------ --- #
+#  --- ------------------------------------------------------------------ --- #
+#  --- ------------------------------------------------------------------ --- #
 
 class TestSimple(unittest.TestCase):
 
-    def test_load_data(self):
+    def test_binance_api_key(self):
+        self.assertIsNotNone(os.environ["BINANCE_API_KEY"])
 
-        self.assertIsNotNone(load_csv(""))
+    def test_binance_secret_key(self):
+        self.assertIsNotNone(os.environ["BINANCE_SECRET_KEY"])
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,0 +1,16 @@
+
+# --------------------------------------------------------------------------- #
+
+[model.signal]
+
+file_name="benchmarks.py"
+file_path="traderman/forecasters/"
+model_name="Randomizer"
+model_params={"seed"=1234, "classes"=["buy", "sell"]}
+
+[model.risk]
+
+name=""
+path=""
+params=""
+

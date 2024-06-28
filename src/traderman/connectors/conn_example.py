@@ -8,14 +8,11 @@ import base64
 import hmac
 import hashlib
 from urllib.parse import urlencode
+import binance as binanceSpot
 
 import requests
 import numpy as np
 import pandas as pd
-
-from tools.data import load_csv
-from target.directional import target_y, eda_y
-import connectors.binance as binanceSpot 
 
 binance_api_key = os.environ["BINANCE_API_KEY"]
 binance_secret_key = os.environ["BINANCE_SECRET_KEY"]
