@@ -5,12 +5,13 @@
 import os
 import time
 import json
-import binance as binanceSpot
 import unittest
 
 import requests
 import numpy as np
 import pandas as pd
+
+import traderman.connectors.binance as binanceSpot
 
 binance_api_key = os.environ["BINANCE_API_KEY"]
 binance_secret_key = os.environ["BINANCE_SECRET_KEY"]
@@ -20,6 +21,16 @@ binance_secret_key = os.environ["BINANCE_SECRET_KEY"]
 # --- ------------------------------------------------------------------ --- #
 
 
+class BinanceKeys(unittest.TestCase):
+    def test_binance_api_key(self):
+
+        self.assertIsNotNone(os.environ["BINANCE_API_KEY"])
+
+    def test_binance_secret_key(self):
+
+        self.assertIsNotNone(os.environ["BINANCE_SECRET_KEY"])
+
+
 class BinanceAPIPublic(unittest.TestCase):
     def test_account_info(self):
 
@@ -27,6 +38,7 @@ class BinanceAPIPublic(unittest.TestCase):
         response = binanceSpot.account_info(
             api_key=binance_api_key, secret_key=binance_secret_key
         )
+
         self.aseertIsNotNone(response)
 
 

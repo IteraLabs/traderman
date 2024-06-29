@@ -10,7 +10,7 @@ description = [" Python SDK to build, train, stress-test,",
                " deploy and monitor trading strategies "]
 
 requires-python = ">=3.11"
-dependencies = ["numpy", "pandas", "torch"]
+dependencies = ["numpy", "pandas", "torch", "requests", "toml"]
 
 authors = [
   {name = "Francisco Munoz", email = "if.francisco.me@gmail.com"},
@@ -29,7 +29,7 @@ classifiers = [
 keywords = ["python3", "trading", "sdk"]
 
 [project.optional-dependencies]
-dev = ["rich"]
+dev = ["rich", "pre-commit"]
 test = ["pytest"]
 
 [project.urls]
