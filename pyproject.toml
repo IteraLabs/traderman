@@ -6,8 +6,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "traderman"
 version = "0.0.dev1"
-description = [" Python SDK to build, train, stress-test,",
-               " deploy and monitor trading strategies "]
+description = "Python SDK to build, train, and deploy trading systems"
 
 requires-python = ">=3.11"
 dependencies = ["numpy", "pandas", "torch", "requests", "toml"]
@@ -24,7 +23,6 @@ classifiers = [
   "Development Status :: 3 - Alpha",
   "Programming Language :: Python :: 3",
   "License :: OSI Approved :: MIT License",
-  "Operative System :: OS Independent",
 ]
 keywords = ["python3", "trading", "sdk"]
 
