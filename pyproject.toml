@@ -1,26 +1,22 @@
 
 [build-system]
-
 requires = ["setuptools", "setuptools-rust"]
 build-backend = "setuptools.build_meta"
 
 [project]
-
 name = "traderman"
 version = "0.0.dev1"
-description = " Python SDK to build, train, stress-test," + \
-              " deploy and monitor trading strategies "
+description = [" Python SDK to build, train, stress-test,",
+               " deploy and monitor trading strategies "]
 
 requires-python = ">=3.11"
 dependencies = ["numpy", "pandas", "torch"]
 
 authors = [
-  { name = "Francisco ME",
-    email = "if.francisco.me@gmail.com" }, 
+  {name = "Francisco Munoz", email = "if.francisco.me@gmail.com"},
 ]
 maintainers = [
-  { name = "Francisco ME",
-    email = "if.francisco.me@gmail.com" }, 
+  {name = "Francisco Munoz", email = "if.francisco.me@gmail.com"}
 ]
 
 readme = "README.md"
@@ -44,6 +40,4 @@ Issues = "https://github.com/iteralabs/traderman/issues"
 sample = "sample:main"
 
 [tool.setuptools]
-
 package-data = {"sample" = ["*.dat"]}
-

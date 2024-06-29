@@ -1,4 +1,3 @@
-
 # --- ------------------------------------------------------------------- --- #
 # --- ------------------------------------------------------------------- --- #
 # --- ------------------------------------------------------------------- --- #
@@ -7,11 +6,6 @@ import os
 import sys
 import toml
 import numpy as np
-
-# -- Set working directories
-cwd_path = os.getcwd()
-package_path = cwd_path + "/src"
-sys.path.insert(0, package_path)
 
 from traderman.forecasters.benchmarks import Randomizer
 from traderman.connectors import binance as BinanceSpot
@@ -43,13 +37,15 @@ forecasted_volume = np.round(forecasted_volume, 4)
 print(f"volume to trade: {forecasted_volume}")
 
 # --- ------------------------------------------------------------------- --- #
-trade_params = {"symbol": "BTCUSDT",
-                "type": "MARKET",
-                "side": forecasted_signal,
-                "quantity": forecasted_volume[0],}
+trade_params = {
+    "symbol": "BTCUSDT",
+    "type": "MARKET",
+    "side": forecasted_signal,
+    "quantity": forecasted_volume[0],
+}
 
-n_order = BinanceSpot.new_order(in_params=trade_params,
-                      api_key=BINANCE_API_KEY,
-                      secret_key=BINANCE_SECRET_KEY)
+n_order = BinanceSpot.new_order(
+    in_params=trade_params, api_key=BINANCE_API_KEY, secret_key=BINANCE_SECRET_KEY
+)
 
 print(n_order)

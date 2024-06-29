@@ -1,7 +1,5 @@
-
 # --- ----------------------------------------------------------------------- #
-# --- File: Execution --------------------------------------------------- --- #
-# --- Mode: RandoBen ---------------------------------------------------- --- #
+# --- File: benchmarks.py
 # --- ----------------------------------------------------------------------- #
 
 import sys
@@ -14,35 +12,33 @@ from traderman.forecasters.forecast import Forecaster
 # --- ------------------------------------------------------------------- --- #
 # --- ------------------------------------------------------------------- --- #
 
+
 class Randomizer(Forecaster):
-    """
-    """
-     
+    """ """
+
     # ----------------------------------------------------------------------- #
     # ----------------------------------------------------------------------- #
-    
-    def __init__(self, seed:int, model_type:str) -> None:
-        """
-        """
+
+    def __init__(self, seed: int, model_type: str) -> None:
+        """ """
 
         self.seed = seed
         self.model_type = model_type
-        
+
     # ----------------------------------------------------------------------- #
     # ----------------------------------------------------------------------- #
-    
-    def predict(self, verbose:bool = False, **kwargs):
-        """
-        """
-        
-        if self.model_type == "classifier": 
-        
+
+    def predict(self, verbose: bool = False, **kwargs):
+        """ """
+
+        if self.model_type == "classifier":
+
             i_index = torch.randint(len(kwargs["classes"]), (1,))
             forecasted = kwargs["classes"][i_index]
 
             print(f" -- Forecast: {forecasted}") if verbose else None
 
-            return forecasted 
+            return forecasted
 
         elif self.model_type == "regressor":
 
@@ -50,5 +46,3 @@ class Randomizer(Forecaster):
             forecasted = i_index.sample([1])
 
             return forecasted.tolist()[0:]
-
-
