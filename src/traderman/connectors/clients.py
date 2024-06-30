@@ -55,9 +55,6 @@ def hash_content(
 
     encoded_secret = secret_key.encode(encoding_type)
     encoded_string = content_string.encode(encoding_type)
-
-    # hash_method = getattr(hashlib, hash_method)
-
     hash_method = getattr(hashlib, hash_method)
     r_hased = hmac.new(encoded_secret, encoded_string, hash_method)
 
@@ -122,9 +119,6 @@ def send_signed_request(
         ]
     )
 
-    # TODO: verbose
-    # print("{} {}".format(http_method, url))
-
     params = {"url": url, "params": {}}
     response = dispatch_request(http_method, api_key=api_key)(**params)
 
@@ -149,7 +143,6 @@ def send_public_request(
     if query_string:
         url = url + "?" + query_string
 
-    print("{}".format(url))
     response = dispatch_request("GET", api_key=api_key)(url=url)
 
     return response.json()

@@ -39,6 +39,71 @@ def account_info(api_key, secret_key):
 
 # --- ------------------------------------------------------------------- --- #
 # --- ------------------------------------------------------------------- --- #
+def account_trades(api_key, secret_key):
+    """
+    Get the account's historical trades
+    """
+
+    sr = ct.send_signed_request(
+        "GET",
+        "/api/v3/myTrades",
+        {},
+        BASE_URL,
+        api_key,
+        secret_key,
+    )
+
+    return sr
+
+
+# --- ------------------------------------------------------------------- --- #
+# --- ------------------------------------------------------------------- --- #
+def account_comission(in_params, api_key, secret_key):
+    """
+    Get the account's comission rates
+    """
+
+    sr = ct.send_signed_request(
+        "GET",
+        "/api/v3/account/commission",
+        in_params,
+        BASE_URL,
+        api_key,
+        secret_key,
+    )
+
+    return sr
+
+
+# --- ------------------------------------------------------------------- --- #
+# --- ------------------------------------------------------------------- --- #
+def new_order_test(in_params, api_key, secret_key):
+    """
+    place a new TEST order, not real volume, only to validate request
+
+    Args:
+
+        in_params: dict (default={})
+        "symbol": "BTCUSDT"
+        "side": "SELL"
+        "type": "MARKET"
+
+    """
+
+    sr = ct.send_signed_request(
+        "POST",
+        "/api/v3/order/test",
+        in_params,
+        BASE_URL,
+        api_key,
+        secret_key,
+    )
+
+    return sr
+
+
+# --- ------------------------------------------------------------------- --- #
+# --- ------------------------------------------------------------------- --- #
 def new_order(in_params, api_key, secret_key):
     """
     place a new order
@@ -136,6 +201,24 @@ def get_all_orders(in_params, api_key, secret_key):
         BASE_URL,
         api_key,
         secret_key,
+    )
+
+    return sr
+
+
+# --- ------------------------------------------------------------------- --- #
+# --- ------------------------------------------------------------------- --- #
+def public_trades(in_params, api_key):
+    """
+    get all public trades for a given symbol
+    """
+
+    sr = ct.send_signed_request(
+        "GET",
+        "/api/v3/trades",
+        in_params,
+        BASE_URL,
+        api_key,
     )
 
     return sr
