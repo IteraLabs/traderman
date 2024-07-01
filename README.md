@@ -6,8 +6,7 @@ Python SDK to build, train, stress-test, deploy and monitor trading strategies
 [![issues](https://img.shields.io/github/issues/iteralabs/traderman)](https://github.com/iteralabs/traderman/issues)
 [![forks](https://img.shields.io/github/forks/iteralabs/traderman)](https://github.com/iteralabs/traderman/network/members)
 [![python](https://img.shields.io/badge/-Python_3.11-blue?logo=python&logoColor=white)](https://www.python.org/downloads/release/python-3110/)
-
-![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)(https://github.com/psf/black)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/iteralabs/tradernab/blob/master/.pre-commit-config.yaml)
 [![License](https://img.shields.io/github/license/iteralabs/traderman)](https://github.com/iteralabs/traderman/blob/master/LICENSE)
 <br>
