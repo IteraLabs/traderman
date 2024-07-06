@@ -2,8 +2,6 @@
 # --- File: benchmarks.py
 # --- ----------------------------------------------------------------------- #
 
-import sys
-import os
 import torch
 from torch.distributions.uniform import Uniform
 from traderman.forecasters.forecast import Forecaster
@@ -19,7 +17,7 @@ class Randomizer(Forecaster):
     # ----------------------------------------------------------------------- #
     # ----------------------------------------------------------------------- #
 
-    def __init__(self, seed: int, model_type: str) -> None:
+    def __init__(self, seed: int, model_type: str):
         """ """
 
         self.seed = seed

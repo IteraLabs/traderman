@@ -7,6 +7,13 @@ import sys
 import toml
 import numpy as np
 
+# --- Only run the following if developing locally and not through installing
+sys.path.insert(0, os.getcwd())
+sys.path.insert(0, os.getcwd() + "/src")
+sys.path.insert(0, os.getcwd() + "/src/traderman")
+cwd_path = os.path.abspath("")
+# ---
+
 from traderman.forecasters.benchmarks import Randomizer
 from traderman.connectors import binance as BinanceSpot
 
@@ -31,8 +38,8 @@ print(f"forecasted class: {forecasted_signal}")
 # --- ------------------------------------------------------------------- --- #
 
 ModelRisk = Randomizer(seed=SET_SEED, model_type="regressor")
-forecasted_volume = ModelRisk.predict(lower=0.0001, upper=0.0009)
-forecasted_volume = np.round(forecasted_volume, 4)
+forecasted_volume = ModelRisk.predict(lower=0.0001, upper=0.0002)
+forecasted_volume = np.round(np.float32(forecasted_volume), 4)
 
 print(f"volume to trade: {forecasted_volume}")
 

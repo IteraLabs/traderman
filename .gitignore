@@ -3,6 +3,8 @@
 
 local_venv/
 .DS_Store
+pyrightconfig.json
+.python-version
 
 # -- ------------------------------------------------------------------------ #
 

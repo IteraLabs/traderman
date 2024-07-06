@@ -2,8 +2,6 @@
 # --- File: binance.py
 # --- ------------------------------------------------------------------- --- #
 
-import os
-import pandas as pd
 import traderman.connectors.clients as ct
 
 BASE_URL = "https://api.binance.com"
@@ -13,7 +11,11 @@ HASH_METHOD = "sha256"
 # --- ------------------------------------------------------------------- --- #
 def test_connection():
 
-    sr = ct.send_public_request("/api/v1/ping", {}, BASE_URL, None)
+    sr = ct.send_public_request(
+        "/api/v1/ping",
+        {},
+        BASE_URL,
+    )
 
     return sr
 
