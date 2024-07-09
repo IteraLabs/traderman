@@ -3,16 +3,8 @@
 # --- ------------------------------------------------------------------- --- #
 
 import os
-import sys
 import toml
 import numpy as np
-
-# --- Only run the following if developing locally and not through installing
-sys.path.insert(0, os.getcwd())
-sys.path.insert(0, os.getcwd() + "/src")
-sys.path.insert(0, os.getcwd() + "/src/traderman")
-cwd_path = os.path.abspath("")
-# ---
 
 from traderman.forecasters.benchmarks import Randomizer
 from traderman.connectors import binance as BinanceSpot
@@ -22,6 +14,7 @@ BINANCE_SECRET_KEY = os.environ["BINANCE_SECRET_KEY"]
 
 # --- Get params from Config.toml --------------------------------------- --- #
 
+cwd_path = os.path.abspath("")
 with open(cwd_path + "/examples/basic_config.toml", "r") as file:
     config_data = toml.load(file)
 

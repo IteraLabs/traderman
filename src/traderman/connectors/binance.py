@@ -3,9 +3,47 @@
 # --- ------------------------------------------------------------------- --- #
 
 import traderman.connectors.clients as ct
+from traderman.core import Trade
 
 BASE_URL = "https://api.binance.com"
 HASH_METHOD = "sha256"
+
+
+# --- ------------------------------------------------------------------- --- #
+# --- ------------------------------------------------------------------- --- #
+
+
+def format_account_trades(in_account_trades):
+    """
+    The bridge method between the BinanceSpot implementation of the generic
+    connector function, and, the Trade struct
+    """
+
+    l_trades = []
+
+    for i_trade in in_account_trades:
+
+        l_trades.append(
+            Trade(
+                tradeid=i_trade["id"],
+                orderid=i_trade["orderId"],
+                symbol=i_trade["symbol"],
+                timestamp=i_trade["time"],
+                price=float(i_trade["price"]),
+                side="BUY" if i_trade["isBuyer"] else "SELL",
+                commission={
+                    "amount": i_trade["commission"],
+                    "asset": i_trade["commissionAsset"],
+                },
+                volume={
+                    "basevolume": float(i_trade["qty"]),
+                    "quotevolume": float(i_trade["quoteQty"]),
+                },
+            )
+        )
+
+    return l_trades
+
 
 # --- ------------------------------------------------------------------- --- #
 # --- ------------------------------------------------------------------- --- #
@@ -41,7 +79,7 @@ def account_info(api_key, secret_key):
 
 # --- ------------------------------------------------------------------- --- #
 # --- ------------------------------------------------------------------- --- #
-def account_trades(api_key, secret_key):
+def account_trades(in_params, api_key, secret_key, format_output):
     """
     Get the account's historical trades
     """
@@ -49,13 +87,20 @@ def account_trades(api_key, secret_key):
     sr = ct.send_signed_request(
         "GET",
         "/api/v3/myTrades",
-        {},
+        in_params,
         BASE_URL,
         api_key,
         secret_key,
     )
 
-    return sr
+    if format_output:
+
+        r_trade = format_account_trades(in_account_trades=sr)
+        return r_trade
+
+    else:
+
+        return sr
 
 
 # --- ------------------------------------------------------------------- --- #

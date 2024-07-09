@@ -30,6 +30,12 @@ git clone https://github.com/iteralabs/traderman.git
 
 ## Use
 
+### Credentials
+
+One alternative way of storing the Tokens is to place them in a .py inside a local virtual environment folder that is ignored (indicated in .gitignore) and run such
+file once every working session that you are developing locally.
+
+
 ```python
 
 import os
