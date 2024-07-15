@@ -11,10 +11,10 @@ requires-python = ">=3.11"
 dependencies = ["numpy", "pandas", "torch", "requests", "toml"]
 
 authors = [
-  {name = "Francisco Munoz", email = "if.francisco.me@gmail.com"},
+  {name = "J.Francisco Munoz", email = "if.francisco.me@gmail.com"},
 ]
 maintainers = [
-  {name = "Francisco Munoz", email = "if.francisco.me@gmail.com"}
+  {name = "J.Francisco Munoz", email = "if.francisco.me@gmail.com"}
 ]
 
 readme = "README.md"
