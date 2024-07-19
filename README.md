@@ -101,6 +101,10 @@ Check out the following ways to contribute:
 
 - [IFFranciscoME](https://github.com/IFFranciscoME)
 
+## References
+
+- [binance-docs/spot](https://binance-docs.github.io/apidocs/spot/en/#introduction)
+
 ## License
 
 ```
