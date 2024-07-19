@@ -6,7 +6,7 @@ import os
 import toml
 import numpy as np
 
-from traderman.forecasters.benchmarks import Randomizer
+from traderman.models.benchmarks import Randomizer
 from traderman.connectors import binance as BinanceSpot
 
 BINANCE_API_KEY = os.environ["BINANCE_API_KEY"]
@@ -15,7 +15,7 @@ BINANCE_SECRET_KEY = os.environ["BINANCE_SECRET_KEY"]
 # --- Get params from Config.toml --------------------------------------- --- #
 
 cwd_path = os.path.abspath("")
-with open(cwd_path + "/examples/basic_config.toml", "r") as file:
+with open(cwd_path + "/examples/basic.toml", "r") as file:
     config_data = toml.load(file)
 
 SET_SEED = config_data["model"]["signal"]["model_params"]["seed"]
