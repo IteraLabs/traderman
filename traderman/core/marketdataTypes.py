@@ -2,8 +2,50 @@
 # --- File: core.py
 # --- ----------------------------------------------------------------------- #
 
+import typing
 from attrs import validators
 from attrs import define, field
+
+from traderman.core.dataTypes import tensorTypes
+
+# --- ------------------------------------------------------------------- --- #
+# --- ------------------------------------------------------------------- --- #
+# --- ------------------------------------------------------------------- --- #
+
+
+@define(slots=True, frozen=True)
+class Bids:
+    prices: typing.Any = field(validator=tensorTypes.validator[0])
+    volumes: typing.Any = field(validator=tensorTypes.validator[0])
+
+
+@define(slots=True, frozen=True)
+class Asks:
+    prices: typing.Any = field(validator=tensorTypes.validator[0])
+    volumes: typing.Any = field(validator=tensorTypes.validator[0])
+
+
+# --- ------------------------------------------------------------------- --- #
+# --- ------------------------------------------------------------------- --- #
+# --- ------------------------------------------------------------------- --- #
+
+
+@define(slots=True, frozen=True)
+class OrderBook:
+    """
+    Container class for orderbook data
+    """
+
+    orderbookid: int = field(kw_only=True, validator=validators.instance_of(int))
+
+    symbol: str = field(kw_only=True, validator=validators.instance_of(str))
+
+    timestamp: int = field(kw_only=True, validator=validators.instance_of(int))
+
+    bids: Bids = field(kw_only=True, validator=validators.instance_of(Bids))
+
+    asks: Asks = field(kw_only=True, validator=validators.instance_of(Asks))
+
 
 # --- ------------------------------------------------------------------- --- #
 # --- ------------------------------------------------------------------- --- #
