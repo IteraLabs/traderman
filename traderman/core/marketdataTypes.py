@@ -1,5 +1,5 @@
 # --- ----------------------------------------------------------------------- #
-# --- File: core.py
+# --- File: marketdataTypes.py
 # --- ----------------------------------------------------------------------- #
 
 import typing
@@ -52,7 +52,7 @@ class OrderBook:
 # --- ------------------------------------------------------------------- --- #
 
 
-@define
+@define(frozen=True)
 class Trade:
     """
     Container class for an already executed trade.
@@ -77,12 +77,19 @@ class Trade:
         kw_only=True,
         validator=validators.deep_mapping(
             key_validator=validators.instance_of(str),
-            value_validator=validators.instance_of(float),
+            value_validator=validators.instance_of((float, int)),
             mapping_validator=validators.instance_of(dict),
         ),
     )
 
-    commission: dict = field(kw_only=True)
+    commission: dict = field(
+        kw_only=True,
+        validator=validators.deep_mapping(
+            key_validator=validators.instance_of(str),
+            value_validator=validators.instance_of((float, int, str)),
+            mapping_validator=validators.instance_of(dict),
+        ),
+    )
 
 
 # --- ------------------------------------------------------------------- --- #
@@ -96,12 +103,14 @@ class Order:
 
     orderid: int = field(kw_only=True, validator=validators.instance_of(int))
 
-    timestamp: int = field(kw_only=True, validator=validators.instance_of(int))
+    symbol: str = field(kw_only=True, validator=validators.instance_of(str))
 
-    type: str = field(kw_only=True, validator=validators.in_(["MARKET", "LIMIT"]))
+    timestamp: int = field(kw_only=True, validator=validators.instance_of(int))
 
     price: float = field(kw_only=True, validator=validators.instance_of(float))
 
     side: str = field(kw_only=True, validator=validators.in_(["SELL", "BUY"]))
 
     volume: float = field(kw_only=True, validator=validators.instance_of(float))
+
+    ordertype: str = field(kw_only=True, validator=validators.in_(["MARKET", "LIMIT"]))

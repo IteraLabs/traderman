@@ -3,16 +3,13 @@
 # --- ------------------------------------------------------------------- --- #
 
 import traderman.connectors.clients as ct
-from traderman.core import Trade
+from traderman.core.marketdataTypes import Trade
 
 BASE_URL = "https://api.binance.com"
 HASH_METHOD = "sha256"
 
-
 # --- ------------------------------------------------------------------- --- #
 # --- ------------------------------------------------------------------- --- #
-
-
 def format_account_trades(in_account_trades):
     """
     The bridge method between the BinanceSpot implementation of the generic
@@ -60,7 +57,7 @@ def test_connection():
 
 # --- ------------------------------------------------------------------- --- #
 # --- ------------------------------------------------------------------- --- #
-def account_info(api_key, secret_key):
+def account_info(in_params, api_key, secret_key):
     """
     Get the account information
     """
@@ -68,7 +65,7 @@ def account_info(api_key, secret_key):
     sr = ct.send_signed_request(
         "GET",
         "/api/v3/account",
-        {},
+        in_params,
         BASE_URL,
         api_key,
         secret_key,
@@ -223,6 +220,26 @@ def cancel_all_orders(in_params, api_key, secret_key):
 
     sr = ct.send_signed_request(
         "DELETE",
+        "/api/v3/openOrders",
+        in_params,
+        BASE_URL,
+        api_key,
+        secret_key,
+    )
+
+    return sr
+
+
+# --- ------------------------------------------------------------------- --- #
+# --- ------------------------------------------------------------------- --- #
+def get_all_openorders(in_params, api_key, secret_key):
+    """
+    get all open orders for a given instrument (if no instrument
+    is specified, returns for all instruments).
+    """
+
+    sr = ct.send_signed_request(
+        "GET",
         "/api/v3/openOrders",
         in_params,
         BASE_URL,

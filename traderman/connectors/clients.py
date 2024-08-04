@@ -6,9 +6,7 @@ import hmac
 import hashlib
 import requests
 from urllib.parse import urlencode
-import time
-import pandas as pd
-
+import json
 from traderman.tools.generic import get_system_timestamp
 
 # --- ------------------------------------------------------------------- --- #

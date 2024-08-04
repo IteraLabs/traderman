@@ -4,6 +4,7 @@
 
 from __future__ import annotations
 from abc import ABC, abstractmethod
+from typing import Any, Dict
 
 # --- ------------------------------------------------------------------- --- #
 # --- ------------------------------------------------------------------- --- #
@@ -16,5 +17,5 @@ class Forecaster(ABC):
     """
 
     @abstractmethod
-    def predict(self):
-        pass
+    def predict(self) -> Dict[str, Any]:
+        return {"forecast": 1}
