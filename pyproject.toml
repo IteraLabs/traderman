@@ -11,7 +11,7 @@ requires-python = ">=3.10"
 dependencies = ["attrs", "numpy", "pandas", "torch", "requests", "toml"]
 
 authors = [
-  {name = "iteralabs", email = "www.iteralabs.ai"},
+  {name = "iteralabs"},
 ]
 maintainers = [
   {name = "J.Francisco Munoz", email = "if.francisco.me@gmail.com"}
