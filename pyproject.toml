@@ -4,14 +4,14 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "traderman"
-version = "0.0.1"
+version = "0.0.2"
 description = "Python SDK to build, train, and deploy trading systems"
 
-requires-python = ">=3.11"
-dependencies = ["numpy", "pandas", "torch", "requests", "toml"]
+requires-python = ">=3.10"
+dependencies = ["attrs", "numpy", "pandas", "torch", "requests", "toml"]
 
 authors = [
-  {name = "J.Francisco Munoz", email = "if.francisco.me@gmail.com"},
+  {name = "iteralabs", email = "www.iteralabs.ai"},
 ]
 maintainers = [
   {name = "J.Francisco Munoz", email = "if.francisco.me@gmail.com"}
@@ -23,10 +23,10 @@ classifiers = [
   "Programming Language :: Python :: 3",
   "License :: OSI Approved :: MIT License",
 ]
-keywords = ["python3", "trading", "sdk"]
+keywords = ["python3", "trading", "sdk", "defi", "hft"]
 
 [project.optional-dependencies]
-dev = ["rich", "pre-commit"]
+dev = ["pre-commit"]
 test = ["pytest"]
 
 [project.urls]
