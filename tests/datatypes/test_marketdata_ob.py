@@ -1,5 +1,5 @@
 # --- ------------------------------------------------------------------- --- #
-# --- File: test_marketdata.py
+# --- File: test_marketdata_ob.py
 # --- ------------------------------------------------------------------- --- #
 
 import sys
@@ -11,7 +11,7 @@ import unittest
 # --- ------------------------------------------------------------------- --- #
 
 
-class MarketData(unittest.TestCase):
+class MarketDataOB(unittest.TestCase):
     """ """
 
     # --- ------------------------------------ TEST AN ORDERBOOK INSTANCE --- #

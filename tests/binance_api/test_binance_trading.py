@@ -6,14 +6,15 @@ import os
 import unittest
 from traderman.connectors import binance as binanceSpot
 
+
 # --- ------------------------------------------------------------------- --- #
 # --- ------------------------------------------------------------------- --- #
 # --- ------------------------------------------------------------------- --- #
 
 
-class BinanceAccount(unittest.TestCase):
+class BinanceTrading(unittest.TestCase):
     """
-    Test the Account Endpoints for the Binance REST API
+    Test the Trading Endpoints for the Binance REST API
 
     References:
         api_url: "https://developers.binance.com/"
@@ -22,12 +23,12 @@ class BinanceAccount(unittest.TestCase):
 
     # --- --------------------------------------------------------------- --- #
     # --- --------------------------------------------------------------- --- #
-    def test_account_info(self):
+    def test_new_order_test(self):
         """
-        Test the #account-information-user_data endpoint
+        Test the #new-order-test
         """
 
-        response = binanceSpot.account_info(
+        response = binanceSpot.new_order_test(
             in_params={},
             api_key=BINANCE_API_KEY,
             secret_key=BINANCE_SECRET_KEY,
@@ -37,32 +38,31 @@ class BinanceAccount(unittest.TestCase):
 
     # --- --------------------------------------------------------------- --- #
     # --- --------------------------------------------------------------- --- #
-    def test_account_trades(self, test_symbol: str = "BTCUSDT"):
+    def test_new_order(self):
         """
-        Test the #account-trade-list-user_data endpoint
+        Test the #new-order-test
         """
 
-        params = {"symbol": test_symbol}
+        params = {"symbol": "BTCUSDT", "side": "SELL", "type": "MARKET"}
 
-        response = binanceSpot.account_trades(
+        response = binanceSpot.new_order(
             in_params=params,
             api_key=BINANCE_API_KEY,
             secret_key=BINANCE_SECRET_KEY,
-            format_output=True,
         )
 
         self.assertIsNotNone(response)
 
     # --- --------------------------------------------------------------- --- #
     # --- --------------------------------------------------------------- --- #
-    def test_account_comission(self, test_symbol: str = "BTCUSDT"):
+    def test_all_orders(self):
         """
-        Test the #query-commission-rates-user_data endpoint
+        Test the #new-order-test
         """
 
-        params = {"symbol": test_symbol}
+        params = {"symbol": "BTCUSDT"}
 
-        response = binanceSpot.account_comission(
+        response = binanceSpot.get_all_orders(
             in_params=params,
             api_key=BINANCE_API_KEY,
             secret_key=BINANCE_SECRET_KEY,
