@@ -4,7 +4,7 @@
 
 import torch
 from torch.distributions.uniform import Uniform
-from traderman.forecasters.forecast import Forecaster
+from traderman.models.forecast import Forecaster
 
 # --- ------------------------------------------------------------------- --- #
 # --- ------------------------------------------------------------------- --- #
